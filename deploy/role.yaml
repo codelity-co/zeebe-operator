@@ -5,42 +5,70 @@ metadata:
   name: zeebe-operator
 rules:
 - apiGroups: [""]
-  resources: ["namespaces"]
-  verbs: ["get"]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list", "create", "update", "delete", "patch"]
+
 - apiGroups: [""]
-  resources: ["configmaps"]
-  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+  resources: ["services"]
+  verbs: ["get", "watch", "list", "create", "update", "delete", "patch"]
+
 - apiGroups: [""]
-  resources: ["secrets"]
-  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+  resources: ["serviceaccounts"]
+  verbs: ["get", "watch", "list", "create", "update", "delete", "patch"]
+
+- apiGroups: [""]
+  resources: ["configmaps", "secrets"]
+  verbs: ["get", "watch", "list", "create", "update", "delete", "patch"]
+
+- apiGroups: [""]
+  resources: ["persistentvolumeclaims"]
+  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]  
+
 - apiGroups: [""]
   resources: ["events"]
   verbs: ["create"]
-- apiGroups: ["policy"]
-  resources: ["poddisruptionbudgets"]
-  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+  
 - apiGroups: [""]
-  resources: ["services"]
+  resources: ["namespaces"]
+  verbs: ["get"]
+
+- apiGroups: ["apps"]
+  resources: ["daemonsets"]
   verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+
 - apiGroups: ["apps"]
   resources: ["deployments"]
   verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
-- apiGroups: ["apps"]
-  resources: ["statefulsets"]
-  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
-- apiGroups: ["monitoring.coreos.com"]
-  resources: ["servicemonitors"]
-  verbs: ["get", "create"]
+
 - apiGroups: ["apps"]
   resourceNames: ["zeebe-operator"]
   resources: ["deployments/finalizers"]
   verbs: ["update"]
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["get"]
+
 - apiGroups: ["apps"]
-  resources: ["replicasets", "deployments"]
-  verbs: ["get"]
-- apiGroups: ["charts.helm.k8s.io"]
-  resources: ["*"]
+  resources: ["replicasets"]
+  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+
+- apiGroups: ["apps"]
+  resources: ["statefulsets"]
+  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+  
+- apiGroups: ["policy"]
+  resources: ["poddisruptionbudgets"]
+  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+
+- apiGroups: ["monitoring.coreos.com"]
+  resources: ["servicemonitors"]
+  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["roles", "rolebindings"]
+  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+
+- apiGroups: ["helm.operator-sdk"]
+  resources: ["zeebes", "zeebes/status"]
   verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]

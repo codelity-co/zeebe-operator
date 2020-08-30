@@ -16,7 +16,7 @@ spec:
       containers:
         - name: zeebe-operator
           # Replace this with the built image name
-          image: gcr.io/codelity-co/zeebe-operator:v0.1.0
+          image: gcr.io/codelity-co/zeebe-operator:v0.2.0
           imagePullPolicy: Always
           env:
             - name: WATCH_NAMESPACE
