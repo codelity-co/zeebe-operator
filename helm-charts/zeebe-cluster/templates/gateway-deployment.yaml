@@ -22,6 +22,10 @@ spec:
         {{ $key }}: {{ $value | quote }}
         {{- end }}
     spec:
+      {{ if .Values.gateway.serviceAccount }}
+      serviceAccount: {{  .Values.gateway.serviceAccount }}
+      serivceAccountName: {{  .Values.gateway.serviceAccount }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

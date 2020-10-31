@@ -11,4 +11,8 @@ dependencies:
   repository: https://kubernetes-charts.storage.googleapis.com/ 
   version: 8.5.11
   condition: "prometheus.enabled"
+- name: zeebe-operate
+  repository: https://helm.zeebe.io
+  version: 0.0.28
+  condition: "operate.enabled"
   
