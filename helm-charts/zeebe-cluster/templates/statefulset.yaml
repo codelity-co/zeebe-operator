@@ -29,7 +29,6 @@ spec:
     spec:
       {{ if .Values.serviceAccount }}
       serviceAccount: {{  .Values.serviceAccount }}
-      serivceAccountName: {{  .Values.serviceAccount }}
       {{- end }}
       initContainers:
         {{- if .Values.extraInitContainers }}

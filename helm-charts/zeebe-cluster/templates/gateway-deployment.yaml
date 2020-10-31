@@ -24,7 +24,6 @@ spec:
     spec:
       {{ if .Values.gateway.serviceAccount }}
       serviceAccount: {{  .Values.gateway.serviceAccount }}
-      serivceAccountName: {{  .Values.gateway.serviceAccount }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
