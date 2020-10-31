@@ -27,6 +27,10 @@ spec:
         {{ $key }}: {{ $value | quote }}
         {{- end }}   
     spec:
+      {{ if .Values.serviceAccount }}
+      serviceAccount: {{  .Values.serviceAccount }}
+      serivceAccountName: {{  .Values.serviceAccount }}
+      {{- end }}
       initContainers:
         {{- if .Values.extraInitContainers }}
         {{ tpl .Values.extraInitContainers . | indent 8 | trim }}
